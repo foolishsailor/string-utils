@@ -69,6 +69,14 @@ declare namespace StringUtils {
 	 * @param position The position in this string at which to begin searching for searchElement.
 	 */
 	function startsWith(str: string, searchString: string, position?: number): boolean;
+
+	/**
+	 * Takes ina string and returns a number
+	 * @param str The string to turn to a number.
+	 */
+	function toNumber(str: string): number;
+
+
 }
 
 export = StringUtils;

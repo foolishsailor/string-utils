@@ -2,7 +2,7 @@ local StringUtils = {}
 
 function StringUtils.trim(str)
 	local from = string.match(str, "^%s*()")
-	return from > #str and "" or string.match(str, ".*%S", from)  -- there is no escaping 2n complexity, but we can prevent n^2
+	return from > #str and "" or string.match(str, ".*%S", from) -- there is no escaping 2n complexity, but we can prevent n^2
 end
 
 function StringUtils.trimStart(str)
@@ -18,9 +18,13 @@ end
 -- https://github.com/tc39/proposal-string-pad-start-end/blob/master/polyfill.js
 local function getPadding(str, maxLength, fillString)
 	local stringLength = #str
-	if maxLength <= stringLength then return str end
+	if maxLength <= stringLength then
+		return str
+	end
 	local filler = fillString == nil and " " or fillString
-	if filler == "" then return str end
+	if filler == "" then
+		return str
+	end
 	local fillLen = maxLength - stringLength
 	while #filler < fillLen do
 		local fLen = #filler
@@ -43,7 +47,9 @@ function StringUtils.padEnd(str, maxLength, fillString)
 end
 
 function StringUtils.slice(str, i, j)
-	if j ~= nil and j < 0 then j = j - 1 end
+	if j ~= nil and j < 0 then
+		j = j - 1
+	end
 	return string.sub(str, i + 1, j)
 end
 
@@ -83,6 +89,10 @@ function StringUtils.endsWith(str1, str2, pos)
 
 	local start = pos - n2 + 1
 	return start > 0 and string.sub(str1, start, pos) == str2
+end
+
+function StringUtils.toNumber(str)
+	return tonumber(str)
 end
 
 return StringUtils
